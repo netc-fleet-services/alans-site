@@ -1,26 +1,69 @@
 /* =========================================================
    Alan's Towing & Diesel — Landing Page Styles
-   Dark theme, NETC-inspired layout
+   NETC Fleet Services theme system
    ========================================================= */
 
-/* ---------- CSS Variables ---------- */
+/* ---------- NETC Theme: Midnight (default) ---------- */
+:root,
+.theme-midnight {
+  --surface:          19 19 19;
+  --surface-lowest:   14 14 14;
+  --surface-low:      27 27 27;
+  --surface-container:31 31 31;
+  --surface-high:     42 42 42;
+  --surface-highest:  53 53 53;
+  --on-surface:       226 226 226;
+  --on-surface-muted: 120 120 120;
+  --glass-bg:         rgba(0, 0, 0, 0.85);
+}
+
+/* ---------- NETC Fixed Accent Tokens ---------- */
 :root {
-  --bg:         #161616;
-  --bg-high:    #1e1e1e;
-  --bg-highest: #262626;
-  --bg-low:     #0e0e0e;
-  --text:       #F7F7F7;
-  --text-muted: #9A9A9A;
-  --accent:     #F5C518;
-  --accent-dim: #C89E10;
-  --border:     rgba(247, 247, 247, 0.08);
-  --border-mid: rgba(247, 247, 247, 0.15);
+  --primary-container:    255 199 0;
+  --primary-fixed-dim:    245 191 0;
+  --primary:              255 233 185;
+  --on-primary:           62 46 0;
+  --on-primary-container: 0 0 0;
+  --outline:              155 144 120;
+  --outline-variant:      79 70 50;
+}
+
+/* ---------- Site tokens mapped to NETC theme ---------- */
+:root {
+  --bg:         rgb(var(--surface));
+  --bg-high:    rgb(var(--surface-container));
+  --bg-highest: rgb(var(--surface-high));
+  --bg-low:     rgb(var(--surface-lowest));
+  --text:       rgb(var(--on-surface));
+  --text-muted: rgb(var(--on-surface-muted));
+  --accent:     rgb(var(--primary-container));
+  --accent-dim: rgb(var(--primary-fixed-dim));
+  --border:     rgb(var(--on-surface) / 0.08);
+  --border-mid: rgb(var(--on-surface) / 0.15);
   --font-body:  'Inter', sans-serif;
-  --font-head:  'Cabin', 'Inter', sans-serif;
+  --font-head:  'Space Grotesk', sans-serif;
   --radius:     6px;
   --max-w:      1440px;
   --section-py: 6rem;
   --section-px: 2rem;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: rgb(var(--primary-container));
+  color: rgb(var(--on-primary-container));
+}
+
+/* ---------- Smooth theme transitions ---------- */
+*, *::before, *::after {
+  transition-property: background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+a, button, [role="button"] {
+  transition-property: background-color, border-color, color, opacity, transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
 }
 
 /* ---------- Reset ---------- */
@@ -89,7 +132,7 @@ a { color: inherit; text-decoration: none; }
 }
 .btn-primary:hover {
   filter: brightness(1.1);
-  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.35);
+  box-shadow: 0 4px 20px rgb(var(--primary-container) / 0.35);
 }
 .btn-outline {
   background: transparent;
@@ -115,9 +158,9 @@ a { color: inherit; text-decoration: none; }
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(22, 22, 22, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
 .nav-inner {
@@ -175,9 +218,9 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(22, 22, 22, 0.4) 0%,
-    rgba(22, 22, 22, 0.5) 50%,
-    rgba(22, 22, 22, 0.9) 100%
+    rgb(var(--surface) / 0.4) 0%,
+    rgb(var(--surface) / 0.5) 50%,
+    rgb(var(--surface) / 0.92) 100%
   );
 }
 .hero-content {
